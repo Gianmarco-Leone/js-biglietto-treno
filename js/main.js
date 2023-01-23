@@ -22,14 +22,16 @@ let price = (userTravelKm * 0.21);
 console.log("Il prezzo del biglietto è € " + price);
 
 // CREAZIONE SCONTO UNDER 18
-const smallDiscount = "20%";
-smallDiscountNumeric = parseFloat(smallDiscount);
-console.log(typeof smallDiscountNumeric);
+const smallDiscountValue = (price * 20) / 100;
+let priceUnder = price - smallDiscountValue;
+console.log("Il valore dello sconto del 20% è €" + smallDiscountValue);
+console.log("Il prezzo con lo sconto del 20% è €" + priceUnder);
 
 // CREAZIONE SCONTO OVER 65
-const bigDiscount = "40%";
-bigDiscountNumeric = parseFloat(bigDiscount);
-console.log(typeof bigDiscountNumeric);
+const bigDiscountValue = (price * 40) / 100;
+let priceOver = price - bigDiscountValue;
+console.log("Il valore dello sconto del 40% è €" + bigDiscountValue);
+console.log("Il prezzo con lo sconto del 40% è €" + priceOver)
 
 
 
