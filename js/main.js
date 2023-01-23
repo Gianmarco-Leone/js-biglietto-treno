@@ -27,12 +27,12 @@ console.log("Il prezzo del biglietto è € " + price);
 
 // CREAZIONE SCONTO UNDER 18
 const smallDiscountValue = (price * 20) / 100;
-let priceUnder = price - smallDiscountValue;
+// let priceUnder = price - smallDiscountValue;
 
 
 // CREAZIONE SCONTO OVER 65
 const bigDiscountValue = (price * 40) / 100;
-let priceOver = price - bigDiscountValue;
+// let priceOver = price - bigDiscountValue;
 
 
 
