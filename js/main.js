@@ -9,54 +9,64 @@
 //  4) IL PREZZO DOVRA' ESSERE INDICATO CON MASSIMO DUE DECIMALI
 
 
+// SVOLGIMENTO
+let outputMessage;
+const pricePerKm = 0.21;
+
+
 // CHIEDERE ALL'UTENTE NUMERO KM
-let userTravelKm = parseFloat(prompt("Quanti kilometri devi percorrere?"));
-console.log("I chilometri da percorrere sono " + userTravelKm);
+const userTravelKm = parseFloat(prompt("Quanti kilometri devi percorrere?"));
+// console.log("I chilometri da percorrere sono " + userTravelKm);
 
 
 // CHIEDERE ALL'UTENTE ETA'
-let userAge = parseInt(prompt("Quanti anni hai?"));
-console.log("L'età dell'utente è " + userAge);
+const userAge = parseInt(prompt("Quanti anni hai?"));
+// console.log("L'età dell'utente è " + userAge);
 
 
-// PREZZO BIGLIETTO CALCOLATO IN BASE AI KM
-let price = (userTravelKm * 0.21);
-price = price.toFixed(2);
-console.log("Il prezzo del biglietto è € " + price);
+if (!isNaN(userAge) && !isNaN(userTravelKm)) {
+    // PREZZO BIGLIETTO CALCOLATO IN BASE AI KM
+    let price = userTravelKm * pricePerKm;
+    // console.log("Il prezzo del biglietto è € " + price);
 
 
-// CREAZIONE SCONTO UNDER 18
-const smallDiscountValue = (price * 20) / 100;
-// let priceUnder = price - smallDiscountValue;
+    // APPLICARE SCONTO UNDER 18
+    if (userAge < 18) {
 
+        // CREAZIONE SCONTO UNDER 18
+        const smallDiscountValue = (price * 20) / 100;
+        price = price - smallDiscountValue;
+        price = price.toFixed(2);
 
-// CREAZIONE SCONTO OVER 65
-const bigDiscountValue = (price * 40) / 100;
-// let priceOver = price - bigDiscountValue;
+        outputMessage = `Il prezzo scontato per gli under 18 è € ${price}`
+        console.log(outputMessage);
 
+    }
 
+    // APPLICARE SCONTO OVER 65
+    else if (userAge > 65) {
 
-// APPLICARE SCONTO UNDER 18
-if (userAge < 18) {
-    let priceUnder = price - smallDiscountValue;
-    priceUnder = priceUnder.toFixed(2);
-    console.log("Il prezzo scontato per l'under 18 è €" + priceUnder);
-    // Scrivo nell'HTML
-    document.getElementById("price_calculated").innerHTML = ("Usufruendo dello sconto Under 18, il prezzo del suo biglietto è € " + priceUnder);
+        // CREAZIONE SCONTO OVER 65
+        const bigDiscountValue = (price * 40) / 100;
+        price = price - bigDiscountValue;
+        price = price.toFixed(2);
+
+        outputMessage = `Il prezzo scontato per gli over 65 è € ${price}`
+        console.log(outputMessage);
+    }
+
+    // PREZZO PER TUTTI GLI ALTRI UTENTI CHE NON HANNO DIRITTO A SCONTO
+    else {
+        price = price.toFixed(2);
+
+        outputMessage = `Il prezzo non scontato è € ${price}`
+        console.log(outputMessage);
+    }
+
+} else {
+    outputMessage = "I valori inseriti non sono validi"
+    console.log(outputMessage);
 }
-// APPLICARE SCONTO OVER 65
-else if (userAge > 65) {
-    let priceOver = price - bigDiscountValue;
-    priceOver = priceOver.toFixed(2);
-    console.log("Il prezzo scontato per l'over 65 è €" + priceOver);
-    // Scrivo nell'HTML
-    document.getElementById("price_calculated").innerHTML = ("Usufruendo dello sconto Over 65, il prezzo del suo biglietto è € " + priceOver);
-}
-// PREZZO PER TUTTI GLI ALTRI UTENTI CHE NON HANNO DIRITTO A SCONTO
-else {
-    let price = (userTravelKm * 0.21);
-    price = price.toFixed(2);
-    console.log("Il prezzo non scontato è €" + price);
-    // Scrivo nell'HTML
-    document.getElementById("price_calculated").innerHTML = ("Il prezzo del suo biglietto è € " + price);
-}
+
+// SCRIVO NELL'HTML
+document.getElementById("price_calculated").innerHTML = outputMessage;
